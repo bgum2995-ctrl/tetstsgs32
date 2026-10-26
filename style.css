@@ -97,6 +97,7 @@ h2 {
 
 #login { text-align: center; padding-top: 12vh; }
 #login .subtitle { margin: 18px 0; }
+.tagline { margin: 6px 0 0; opacity: .8; }
 
 .profiles { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
 .profile {

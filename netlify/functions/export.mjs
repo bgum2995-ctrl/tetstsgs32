@@ -44,7 +44,7 @@ export default async (req) => {
     return new Response(csv, {
       headers: {
         "content-type": "text/csv; charset=utf-8",
-        "content-disposition": `attachment; filename="tracker-${body.user}.csv"`,
+        "content-disposition": `attachment; filename="shtil-${body.user}.csv"`,
       },
     });
   } catch (err) {

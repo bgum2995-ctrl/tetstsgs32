@@ -249,7 +249,7 @@ $("#download").addEventListener("click", async () => {
     const url = URL.createObjectURL(await res.blob());
     const link = document.createElement("a");
     link.href = url;
-    link.download = `tracker-${session.user}.csv`;
+    link.download = `shtil-${session.user}.csv`;
     document.body.appendChild(link);
     link.click();
     link.remove();
