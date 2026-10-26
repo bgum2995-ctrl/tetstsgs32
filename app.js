@@ -225,6 +225,44 @@ $("#toggle").addEventListener("click", () => {
 });
 document.querySelectorAll(".toggle-label").forEach((l) => l.addEventListener("click", () => setMode(l.dataset.for)));
 
+/* ---------- Выгрузка ---------- */
+
+$("#download").addEventListener("click", async () => {
+  const btn = $("#download");
+  const msg = $("#download-msg");
+  btn.disabled = true;
+  msg.textContent = "Готовлю файл…";
+  msg.className = "msg";
+  try {
+    const res = await fetch("/api/export", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ user: session.user, pin: session.pin }),
+    });
+    if (!res.ok) {
+      let data = {};
+      try {
+        data = await res.json();
+      } catch {}
+      throw new Error(data.error || "Нет связи с сервером");
+    }
+    const url = URL.createObjectURL(await res.blob());
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `tracker-${session.user}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    msg.textContent = "";
+  } catch (err) {
+    msg.textContent = err.message;
+    msg.className = "msg error";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 /* ---------- Экраны ---------- */
 
 function showLogin() {

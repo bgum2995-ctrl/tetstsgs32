@@ -72,6 +72,10 @@ h2 {
 .btn:hover { background: #7E9C8B; }
 .btn:active { transform: scale(.98); }
 .btn:disabled { opacity: .6; cursor: wait; }
+.btn-soft { background: var(--sage); color: var(--text); }
+.btn-soft:hover { background: #ADBFB4; }
+
+.export { margin-top: 10px; }
 
 .link {
   background: none;
