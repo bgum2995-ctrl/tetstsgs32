@@ -79,14 +79,15 @@ export default async (req) => {
   }
 
   const user = USERS[body.user];
-  const expectedPin = user && process.env[user.pin];
-  if (!user || !expectedPin || String(body.pin) !== String(expectedPin)) {
+  const expectedPin = user && String(process.env[user.pin] || "").trim();
+  if (user && !expectedPin) console.warn(`Переменная ${user.pin} не задана в Netlify`);
+  if (!user || !expectedPin || String(body.pin || "").trim() !== expectedPin) {
     await new Promise((r) => setTimeout(r, 800));
     return json(401, { error: "Неверный PIN" });
   }
   if (body.action === "login") return json(200, { ok: true });
 
-  const sheetId = process.env[user.sheet];
+  const sheetId = String(process.env[user.sheet] || "").trim();
   if (!sheetId) return json(500, { error: "Не указана таблица для пользователя" });
   if (!/^\d{2}\.\d{2}\.\d{4}$/.test(body.date || "")) return json(400, { error: "Неверная дата" });
   if (body.part !== "morning" && body.part !== "evening") return json(400, { error: "Неверный тип трека" });
