@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Трекер состояния</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Вход -->
+  <main id="login" class="screen" hidden>
+    <h1 class="title">Трекер состояния</h1>
+    <p class="subtitle">Кто вы?</p>
+    <div class="profiles">
+      <button type="button" class="profile" data-user="darya">Дарья</button>
+      <button type="button" class="profile" data-user="danil">Данил</button>
+    </div>
+    <form id="pin-form" class="card" hidden>
+      <label for="pin">PIN-код</label>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" required>
+      <button type="submit" class="btn">Войти</button>
+      <p id="login-msg" class="msg" role="status"></p>
+    </form>
+  </main>
+
+  <!-- Трекер -->
+  <main id="app" class="screen" hidden>
+    <header class="top">
+      <div>
+        <h1 class="title">Привет, <span id="user-name"></span></h1>
+        <p class="subtitle" id="today"></p>
+      </div>
+      <button type="button" id="logout" class="link">Выйти</button>
+    </header>
+
+    <div class="toggle-wrap">
+      <span class="toggle-label" data-for="morning">Утро</span>
+      <button type="button" id="toggle" class="toggle" role="switch" aria-checked="false" aria-label="Утро или вечер">
+        <span class="sky">
+          <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span>
+          <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span>
+          <span class="star s4"></span><span class="star s5"></span>
+        </span>
+        <span class="knob"><span class="crater k1"></span><span class="crater k2"></span><span class="crater k3"></span></span>
+      </button>
+      <span class="toggle-label" data-for="evening">Вечер</span>
+    </div>
+
+    <form id="morning" class="card track" hidden>
+      <h2>Как вы проснулись?</h2>
+      <div id="sliders"></div>
+      <button type="submit" class="btn">Отправить</button>
+      <p class="msg" role="status"></p>
+    </form>
+
+    <form id="evening" class="card track" hidden>
+      <h2>Как прошёл день?</h2>
+      <div id="questions"></div>
+      <label class="note-label" for="note">Заметка дня <span class="hint">(по желанию)</span></label>
+      <textarea id="note" rows="4" placeholder="Триггеры, дедлайны, прогулки, события…"></textarea>
+      <button type="submit" class="btn">Отправить</button>
+      <p class="msg" role="status"></p>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
