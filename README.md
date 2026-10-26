@@ -55,10 +55,9 @@
 **Add new site** → **Import an existing project** → **GitHub** → выберите этот репозиторий.
 Настройки сборки оставьте пустыми, всё нужное уже есть в `netlify.toml`. После этого каждый `git push` обновляет сайт.
 
-## Шрифт Nauryz Red Keds
+## Шрифты
 
-Его нет в Google Fonts, поэтому файл нужно положить в папку `fonts/` под именем
-`NauryzRedKeds.woff2` или `NauryzRedKeds.ttf`. Пока файла нет, заголовки показываются шрифтом Comfortaa.
+Заголовки: Balsamiq Sans, текст: Comfortaa. Оба из Google Fonts и поддерживают кириллицу.
 
 ## Таблица
 

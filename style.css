@@ -1,11 +1,3 @@
-/* Положите файл шрифта в папку fonts/ с этим именем */
-@font-face {
-  font-family: "Nauryz Red Keds";
-  src: url("fonts/NauryzRedKeds.woff2") format("woff2"),
-       url("fonts/NauryzRedKeds.ttf") format("truetype");
-  font-display: swap;
-}
-
 :root {
   --sage: #BCCCC2;
   --peach: #E6C6AE;
@@ -15,7 +7,7 @@
   --text: #546B5E;
   --card: #FFF8F2;
   --error: #B4675A;
-  --heading: "Nauryz Red Keds", "Comfortaa", sans-serif;
+  --heading: "Balsamiq Sans", "Comfortaa", sans-serif;
   --body: "Comfortaa", system-ui, sans-serif;
 }
 
