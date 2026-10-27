@@ -41,6 +41,12 @@
       <button type="button" id="logout" class="link">Выйти</button>
     </header>
 
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab" role="tab" data-view="track">Дневник</button>
+      <button type="button" class="tab" role="tab" data-view="stats">Статистика</button>
+    </nav>
+
+    <section id="track-view">
     <div class="toggle-wrap">
       <span class="toggle-label" data-for="morning">Утро</span>
       <button type="button" id="toggle" class="toggle" role="switch" aria-checked="false" aria-label="Утро или вечер">
@@ -69,10 +75,17 @@
       <button type="submit" class="btn">Отправить</button>
       <p class="msg" role="status"></p>
     </form>
-    <div class="export">
-      <button type="button" id="download" class="btn btn-soft">Скачать таблицу</button>
-      <p class="msg" id="download-msg" role="status"></p>
-    </div>
+    </section>
+
+    <section id="stats-view" hidden>
+      <p class="msg" id="stats-msg" role="status"></p>
+      <div id="stats"></div>
+      <div class="export">
+        <button type="button" id="download" class="btn btn-soft">Скачать таблицу</button>
+        <p class="msg" id="download-msg" role="status"></p>
+      </div>
+    </section>
+    <div id="tip" class="tip" hidden></div>
   </main>
 
   <script src="app.js"></script>

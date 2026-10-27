@@ -1,8 +1,8 @@
 // Сохраняет утренний или вечерний трек. Повторная отправка за тот же день перезаписывает эту часть.
-import { json, readBody, checkPin, store, dayKey } from "../lib/common.mjs";
-
-const MORNING_KEYS = ["sleep", "energy", "anxiety", "mood", "stomach", "focus"];
-const EVENING_KEYS = ["social", "tasks", "joy", "negative"];
+import {
+  json, readBody, checkPin, store, dayKey,
+  MORNING_KEYS, EVENING_KEYS, ANSWERS, SCALE_VERSION,
+} from "../lib/common.mjs";
 
 export default async (req) => {
   if (req.method !== "POST") return json(405, { error: "Только POST" });
@@ -20,12 +20,13 @@ export default async (req) => {
   const d = body.data || {};
   const part = { time: String(body.time || "").slice(0, 5) };
   if (body.part === "morning") {
+    part.scale = SCALE_VERSION;
     MORNING_KEYS.forEach((k) => {
       const n = Number(d[k]);
       part[k] = n >= 1 && n <= 5 ? n : null;
     });
   } else {
-    EVENING_KEYS.forEach((k) => (part[k] = typeof d[k] === "boolean" ? d[k] : null));
+    EVENING_KEYS.forEach((k) => (part[k] = ANSWERS.includes(d[k]) ? d[k] : null));
     part.note = String(d.note || "").slice(0, 2000);
   }
 
